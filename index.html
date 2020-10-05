@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Vue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="app" class="container mt-5">
+        <h1> {{title}} </h1>
+        <input type="text" v-model="nuevaFruta" @keyup.enter="agregarFruta">
+        <button v-on:click="agregarFruta">Agregar</button>
+        <ul>
+            <li v-for="fruta in frutas">
+                <input type="text" v-model.number="fruta.cantidad">
+                <button @click="fruta.cantidad++">+</button>
+                <button @click="fruta.cantidad--">-</button>
+                {{fruta.nombre}} - {{fruta.cantidad}} <span v-if="fruta.cantidad === 0">Sin Stock</span>
+            </li>
+        </ul>
+        <h4>Total Frutas = {{sumarFrutas}} </h4>
+
+        <h2>Clases CSS en Vue</h2>
+        <div :class="['p-3', selected]">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore iusto eum obcaecati, maiores repudiandae
+                tempora. Cumque praesentium quod, tempora libero exercitationem, alias corporis nisi ipsam qui rem
+                blanditiis provident minima.
+            </p>
+        </div>
+        <select v-model="selected">
+            <option disabled value="">Seleccione un color de fondo</option>
+            <option>bg-primary</option>
+            <option>bg-secondary</option>
+            <option>bg-success</option>
+            <option>bg-danger</option>
+            <option>bg-warning</option>
+            <option>bg-info</option>
+            <option>bg-light</option>
+            <option>bg-dark</option>
+        </select>
+
+        <div class="mt-5" :class="{'bg-dark' : color, 'bg-warning': !color}">
+            <p class="text-white p-3" :class="{'text-white' :color, 'text-dark' : !color}">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est quis culpa pariatur perspiciatis reiciendis, eum
+                provident cumque accusantium. Quibusdam odit enim sunt deserunt praesentium fuga esse nemo cumque quos similique.
+            </p>
+        </div>
+        <button class="btn btn-primary" @click='color = !color'> Cambiar fondo</button>
+
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js'></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
